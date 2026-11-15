@@ -5,7 +5,6 @@
 *.png
 __pycache__/
 *.py[cod]
-build_epub.py
 
 !README.md
 !电子书制作工具说明.md
