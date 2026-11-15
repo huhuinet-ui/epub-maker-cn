@@ -1,4 +1,7 @@
 *.epub
+*.docx
+*.doc
+*.zip
 *.md
 *.jpg
 *.jpeg

@@ -8,9 +8,10 @@ import html
 import mimetypes
 import re
 import struct
+import tempfile
 import uuid
 import zipfile
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
@@ -152,11 +153,22 @@ def parse_articles(source: Path) -> list[Article]:
 
 
 def inline(text: str) -> str:
-    parts = INLINE_BOLD_RE.split(text)
-    return "".join(
-        "<strong>%s</strong>" % esc(part) if index % 2 else esc(part)
-        for index, part in enumerate(parts)
-    )
+    parts = []
+    start = 0
+    for match in re.finditer(r"(`+)(.+?)\1|\*\*\*(.+?)\*\*\*|\*\*(.+?)\*\*|\*([^*\n]+?)\*", text):
+        parts.append(esc(text[start:match.start()]))
+        _, code, both, bold, italic = match.groups()
+        if code is not None:
+            parts.append("<code>" + esc(code) + "</code>")
+        elif both is not None:
+            parts.append("<strong><em>" + esc(both) + "</em></strong>")
+        elif bold is not None:
+            parts.append("<strong>" + inline(bold) + "</strong>")
+        else:
+            parts.append("<em>" + esc(italic) + "</em>")
+        start = match.end()
+    parts.append(esc(text[start:]))
+    return "".join(parts)
 
 
 def render_paragraphs(paragraphs: Iterable[str], images: ImageAssets | None = None) -> str:
@@ -232,7 +244,22 @@ def extract_css(path: Path) -> str:
     return re.sub(r"\n{3,}", "\n\n", css).strip() + "\n"
 
 
-def build_epub(options: BookOptions) -> tuple[int, Path]:
+def convert_word(source: Path, output: Path, report=None):
+    try:
+        from word2md import convert
+        return convert(str(source), str(output), report=report)
+    except ImportError as error:
+        raise RuntimeError("Word 导入需要额外依赖，请运行：python -m pip install -r requirements-word.txt") from error
+
+
+def build_epub(options: BookOptions, conversion_report=None) -> tuple[int, Path]:
+    if options.source.suffix.lower() == ".doc":
+        raise ValueError("暂不支持旧版 .doc，请用 Word 另存为 .docx 后导入。")
+    if options.source.suffix.lower() == ".docx":
+        with tempfile.TemporaryDirectory(prefix="epub-word-") as folder:
+            source = Path(folder) / "manuscript.md"
+            convert_word(options.source, source, conversion_report)
+            return build_epub(replace(options, source=source))
     for path, label in ((options.source, "原稿"), (options.cover, "封面"), (options.style, "样式表")):
         if not path.is_file():
             raise FileNotFoundError(f"{label}文件不存在：{path}")
@@ -377,7 +404,7 @@ def run_gui() -> None:
                     messagebox.showerror("读取样式失败", str(error))
 
     fields = [
-        ("Markdown 原稿", "source", lambda: choose_file("source", [("Markdown", "*.md")]), True),
+        ("原稿（MD / Word）", "source", lambda: choose_file("source", [("Markdown / Word", "*.md *.docx *.doc"), ("所有文件", "*.*")]), True),
         ("封面图片", "cover", lambda: choose_file("cover", [("图片", "*.jpg *.jpeg *.png")]), True),
         ("样式表", "style", lambda: choose_file("style", [("Markdown/CSS", "*.md *.css")]), True),
         ("输出 EPUB", "output", lambda: values["output"].set(filedialog.asksaveasfilename(defaultextension=".epub", filetypes=[("EPUB", "*.epub")])), True),
@@ -447,21 +474,41 @@ def run_gui() -> None:
                 raise ValueError("请填写电子书名称和作者/机构。")
             status.set("正在生成并校验……")
             root.update_idletasks()
-            count, output = build_epub(options)
+            report = []
+            count, output = build_epub(options, report)
             status.set(f"完成：{count} 篇文章，{output}")
-            messagebox.showinfo("制作完成", f"已生成 {count} 篇文章：\n{output}")
+            notes = "\n\n需人工核对：\n" + "\n".join(report) if report else ""
+            messagebox.showinfo("制作完成", f"已生成 {count} 篇文章：\n{output}" + notes)
         except Exception as error:
             status.set("生成失败，请检查提示。")
             messagebox.showerror("生成失败", str(error))
 
-    ttk.Button(frame, text="生成电子书", command=make_book).grid(row=9, column=0, columnspan=3, pady=10)
+    def export_markdown():
+        source = Path(values["source"].get())
+        if source.suffix.lower() != ".docx":
+            messagebox.showwarning("请选择 Word 原稿", "请先选择 .docx 文件。旧版 .doc 请先另存为 .docx。")
+            return
+        target = filedialog.asksaveasfilename(initialfile=source.stem + ".md", defaultextension=".md", filetypes=[("Markdown", "*.md")])
+        if not target:
+            return
+        try:
+            report = []
+            output, count = convert_word(source, Path(target), report)
+            messagebox.showinfo("转换完成", f"已生成：{output}\n提取图片：{count} 张" + ("\n\n需人工核对：\n" + "\n".join(report) if report else ""))
+        except Exception as error:
+            messagebox.showerror("转换失败", str(error))
+
+    actions = ttk.Frame(frame)
+    actions.grid(row=9, column=0, columnspan=3, pady=10)
+    ttk.Button(actions, text="Word 转 Markdown", command=export_markdown).pack(side="left", padx=6)
+    ttk.Button(actions, text="生成电子书", command=make_book).pack(side="left", padx=6)
     root.mainloop()
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="将按文章组织的 Markdown 文集制作成兼容性良好的 EPUB。")
     parser.add_argument("--gui", action="store_true", help="打开图形界面")
-    parser.add_argument("--source", type=Path, help="Markdown 原稿")
+    parser.add_argument("--source", type=Path, help="Markdown 或 Word (.docx) 原稿")
     parser.add_argument("--cover", type=Path, help="JPG/PNG 封面")
     parser.add_argument("--style", type=Path, help="CSS 或包含 CSS 代码块的 Markdown")
     parser.add_argument("--output", type=Path, help="输出 EPUB")

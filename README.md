@@ -1,17 +1,20 @@
 # epub-maker-cn
 
-一个面向中文 Markdown 文集的 EPUB 制作工具，提供 HTML 离线版、Python 图形界面和命令行三种使用方式。
+一个面向中文 Markdown / Word 文集的 EPUB 制作工具，提供 HTML 离线版、Python 图形界面和命令行三种使用方式。
 
 ## HTML 离线版（无需安装 Python）
 
 双击 [电子书制作工具.html](./电子书制作工具.html)，在较新版本的 Chrome 或 Edge 中使用。全部功能和默认样式内置在这一个文件中，分享时只需发送此 HTML 文件，不依赖网络、CDN 或服务器。
 
-1. 选择 Markdown 原稿；带图片的原稿可直接选择整个原稿文件夹，或补选图片。文件夹中仅有一份原稿时自动载入；多份原稿时再手动选择。
+1. 选择 Markdown 或 Word `.docx` 原稿。Word 的图片会自动提取；Markdown 带图片时可选择整个原稿文件夹或补选图片。文件夹中仅有一份原稿时自动载入；多份原稿时再手动选择。
 2. 调整字体、字号、行距、缩进、边距及标题颜色，右侧实时预览；点击左侧目录切换页面，也可切换手机宽度。
 3. 可导入 CSS / 样式 Markdown，编辑基础及高级 CSS，下载当前样式；样式设置会尽可能保存在当前浏览器中。
 4. 填写书名，可选作者和封面，点击“生成并下载 EPUB”。文件缺失时先补齐图片再导出。
+5. Word 导入后可点击“下载转换后的 Markdown 与图片”，得到可再次编辑、导入的 ZIP。展开“Word 转换提示”检查推测标题及表格等注意事项。
 
-文件仅在浏览器本地读取，不上传。分层目录、可选作者、前言标题处理及本地图片与 Python 版保持一致。预览采用连续页面，实际阅读器可能因字体及分页方式略有差异；不内嵌字体。网络图片请先下载到本地。当前支持本文说明中的 Markdown 标题、作者、段落、加粗、代码和内联图片语法，不是完整的通用 Markdown 转换器。
+文件仅在浏览器本地读取，不上传。分层目录、可选作者、前言标题处理及本地图片与 Python 版保持一致。预览采用连续页面，实际阅读器可能因字体及分页方式略有差异；不内嵌字体。网络图片请先下载到本地。当前支持本文说明中的 Markdown 标题、作者、段落、加粗、斜体、代码和内联图片语法，不是完整的通用 Markdown 转换器。
+
+Word 标题样式 1–6 级对应 Markdown 的 `#`–`######`；卷、章、文章分别使用标题 2、3、4。旧脚本中的前言识别、图片/图注提取、加粗与斜体转换及推测标题提示已迁入。可勾选整段 `【文字】` 转小标题。表格暂按段落展开，脚注、尾注及文本框需要人工核对；不保留 Word 的分页、页眉页脚和复杂版式。旧版 `.doc` 请先另存为 `.docx`，加密文件请先解除密码。HTML Word 导入需要支持 `DecompressionStream('deflate-raw')` 的较新浏览器。
 
 ## 功能
 
@@ -27,6 +30,12 @@
 ## Python 图形界面
 
 Windows 用户双击 `启动电子书制作工具.bat`，选择原稿、封面和样式表，填写书名及作者，然后生成 EPUB。
+
+原稿可直接选择 `.docx`，生成 EPUB 时自动转换并使用临时图片；也可点击“Word 转 Markdown”单独保存 Markdown 和图片。Python Word 导入需先安装可选依赖：
+
+```powershell
+python -m pip install -r requirements-word.txt
+```
 
 打开界面时会自动载入工具目录下的 `EPUB样式表.md`，可直接使用、编辑或选择其他样式表。
 
@@ -55,7 +64,15 @@ python .\epub_maker.py `
   --creator "作者或机构"
 ```
 
-运行环境：Python 3.9 或更高版本，仅使用 Python 标准库。
+运行环境：Python 3.9 或更高版本。Markdown 制书仅使用标准库；Word 转换额外使用 `python-docx` 和 Pillow。命令行的 `--source` 也支持 `.docx`。单独转换 Word：
+
+```powershell
+python .\word2md.py ".\原稿.docx" ".\输出\原稿.md"
+# 可选：整段【文字】转为 ##### 小标题
+python .\word2md.py ".\原稿.docx" ".\输出\原稿.md" --bracket-subtitle
+```
+
+Python 转换后的图片保存到输出 Markdown 旁的 `原稿_图片` 子目录，移动或分享原稿时请一同保留。
 
 ## 文件用途与维护
 
@@ -63,9 +80,12 @@ python .\epub_maker.py `
 | --- | --- |
 | `电子书制作工具.html` | 独立运行的 HTML 离线版，内置界面、样式、预览和 EPUB 导出；分享此版本只需这个文件 |
 | `epub_maker.py` | Python 图形界面与命令行共用的 EPUB 生成程序 |
+| `word2md.py` | 从已有项目复制并适配的 Word 转 Markdown / 图片提取脚本 |
+| `requirements-word.txt` | Python Word 导入所需的可选依赖 |
 | `启动电子书制作工具.bat` | Windows 下启动 Python 图形界面的快捷入口 |
 | `EPUB样式表.md` | Python 版默认样式；也可导入 HTML 版 |
 | `test_epub_maker.py` | Python 版功能回归测试 |
+| `test_word2md.py` | Python Word 转换与 Word → EPUB 的集成测试，需安装可选依赖 |
 | `test_html.mjs` | HTML 版解析、图片、导出及界面状态逻辑测试，由下方 Python 测试入口调用 |
 | `test_html.py` | HTML 版测试入口，调用 Node.js 并校验实际生成的 EPUB ZIP、XML 和资源引用 |
 | `README.md`、`电子书制作工具说明.md` | 快速使用说明与详细操作说明 |
@@ -77,6 +97,8 @@ python .\epub_maker.py `
 ```powershell
 python -m unittest -v test_epub_maker
 python test_html.py
+# 安装 Word 可选依赖后：
+python -m unittest -v test_word2md
 ```
 
-HTML 版测试额外需要 Node.js 18 或更高版本，无需安装 npm 包。界面状态测试不等同于实际浏览器视觉检查；修改布局后仍需在浏览器中打开 HTML 验证。
+HTML 版测试使用 Node.js 24 或更高版本，无需安装 npm 包或 Python Word 依赖；Word 测试包由标准库动态生成。界面状态测试不等同于实际浏览器视觉检查；修改布局后仍需在浏览器中打开 HTML 验证。

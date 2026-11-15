@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>文集工坊 · EPUB 制作工具</title>
 <style>
-:root{font-family:"Microsoft YaHei",system-ui,sans-serif;color:#26382f;background:#f1f3ed;font-size:14px;--green:#285b47;--line:#dce2d8}*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #a5c2a5;outline-offset:2px}header{height:84px;padding:18px 30px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:#fafbf7}h1{font-size:21px;margin:0 0 4px}header p{margin:0;font-size:12px;color:#6d7b70}.brand{display:flex;gap:13px;align-items:center}.mark{background:var(--green);color:white;border-radius:12px;padding:12px;font:22px Georgia,serif}.pill{border:1px solid var(--line);border-radius:20px;padding:7px 13px;font-size:12px;color:#617462}main{display:grid;grid-template-columns:345px minmax(0,1fr);height:calc(100vh - 84px)}aside{overflow:auto;padding:23px;background:#fafbf7;border-right:1px solid var(--line)}section.panel{margin-bottom:24px}h2{font-size:14px;margin:0 0 14px;display:flex;gap:9px;align-items:center}.step{color:#78927d;font:12px Georgia}label{display:block;font-size:12px;color:#536357;margin:11px 0 6px}input:not([type=color]),select,textarea{width:100%;border:1px solid #d5ddd1;background:white;border-radius:7px;padding:9px;color:#26382f}input[type=file]{font-size:12px;padding:7px!important}input[type=color]{width:100%;height:37px;border:1px solid #d5ddd1;border-radius:7px;background:white}small,.hint{display:block;font-size:11px;line-height:1.7;color:#7b847a;margin:6px 0}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:1px solid #cdd8cb;background:white;color:var(--green);border-radius:7px;padding:9px 12px}.primary{background:var(--green);color:white;border-color:var(--green);font-weight:600;width:100%;padding:13px}.btn:hover{filter:brightness(.95)}.btn:disabled{opacity:.5;cursor:wait}details{margin-top:13px}summary{cursor:pointer;color:var(--green);font-size:12px;padding:4px 0}textarea{font-family:Consolas,monospace;font-size:11px;min-height:190px;margin-top:9px;resize:vertical}.workspace{min-width:0;display:flex;flex-direction:column}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 24px;background:#f5f6f1;border-bottom:1px solid var(--line)}.toolbar strong{font-size:14px}.toolbar .controls{display:flex;align-items:center;gap:9px}.toolbar select{width:100px;padding:7px}.stage{display:flex;flex:1;min-height:0}.outline{width:220px;flex-shrink:0;overflow:auto;padding:19px 13px;background:#f7f8f3;border-right:1px solid var(--line)}.outline p{font-size:11px;color:#869180;margin:0 8px 13px}.outline button{display:block;text-align:left;width:100%;border:0;border-radius:6px;background:transparent;color:#657364;font-size:12px;line-height:1.6;padding:8px;margin:2px 0}.outline button.active{background:#e4ecdf;color:#285b47;font-weight:600}.paper-area{flex:1;min-width:0;padding:27px;overflow:auto;background:#e9ede5;display:flex;justify-content:center}iframe{background:white;border:0;box-shadow:0 5px 24px #273f2a12;width:100%;max-width:760px;min-height:100%;border-radius:2px}.footer{padding:12px 24px;border-top:1px solid var(--line);background:#fafbf7;font-size:12px;color:#59715e;white-space:pre-wrap;max-height:110px;overflow:auto}.footer.error{color:#a13d30;background:#fff3ed}.label-row{display:flex;align-items:center;justify-content:space-between;gap:8px}.label-row .btn{padding:5px 9px;font-size:11px}.badge{font-size:11px;color:#87927e}.empty-hint{color:#7d8879;font-size:12px;padding:8px;line-height:1.8}@media(max-width:1050px){.outline{width:170px}main{grid-template-columns:310px minmax(0,1fr)}.paper-area{padding:15px}.toolbar{padding:12px}}@media(max-width:760px){header{padding:14px;height:78px}.pill{display:none}main{display:block;height:auto}aside{max-height:none;border-right:0}.workspace{height:85vh}.outline{width:135px}.toolbar{flex-wrap:wrap}.paper-area{padding:8px}.row{gap:9px}}
+:root{font-family:"Microsoft YaHei",system-ui,sans-serif;color:#26382f;background:#f1f3ed;font-size:14px;--green:#285b47;--line:#dce2d8}*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #a5c2a5;outline-offset:2px}header{height:84px;padding:18px 30px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:#fafbf7}h1{font-size:21px;margin:0 0 4px}header p{margin:0;font-size:12px;color:#6d7b70}.brand{display:flex;gap:13px;align-items:center}.mark{background:var(--green);color:white;border-radius:12px;padding:12px;font:22px Georgia,serif}.pill{border:1px solid var(--line);border-radius:20px;padding:7px 13px;font-size:12px;color:#617462}main{display:grid;grid-template-columns:345px minmax(0,1fr);height:calc(100vh - 84px)}aside{overflow:auto;padding:23px;background:#fafbf7;border-right:1px solid var(--line)}section.panel{margin-bottom:24px}h2{font-size:14px;margin:0 0 14px;display:flex;gap:9px;align-items:center}.step{color:#78927d;font:12px Georgia}label{display:block;font-size:12px;color:#536357;margin:11px 0 6px}input:not([type=color]):not([type=checkbox]),select,textarea{width:100%;border:1px solid #d5ddd1;background:white;border-radius:7px;padding:9px;color:#26382f}input[type=file]{font-size:12px;padding:7px!important}input[type=color]{width:100%;height:37px;border:1px solid #d5ddd1;border-radius:7px;background:white}small,.hint{display:block;font-size:11px;line-height:1.7;color:#7b847a;margin:6px 0}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:1px solid #cdd8cb;background:white;color:var(--green);border-radius:7px;padding:9px 12px}.primary{background:var(--green);color:white;border-color:var(--green);font-weight:600;width:100%;padding:13px}.btn:hover{filter:brightness(.95)}.btn:disabled{opacity:.5;cursor:wait}details{margin-top:13px}summary{cursor:pointer;color:var(--green);font-size:12px;padding:4px 0}textarea{font-family:Consolas,monospace;font-size:11px;min-height:190px;margin-top:9px;resize:vertical}.workspace{min-width:0;display:flex;flex-direction:column}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 24px;background:#f5f6f1;border-bottom:1px solid var(--line)}.toolbar strong{font-size:14px}.toolbar .controls{display:flex;align-items:center;gap:9px}.toolbar select{width:100px;padding:7px}.stage{display:flex;flex:1;min-height:0}.outline{width:220px;flex-shrink:0;overflow:auto;padding:19px 13px;background:#f7f8f3;border-right:1px solid var(--line)}.outline p{font-size:11px;color:#869180;margin:0 8px 13px}.outline button{display:block;text-align:left;width:100%;border:0;border-radius:6px;background:transparent;color:#657364;font-size:12px;line-height:1.6;padding:8px;margin:2px 0}.outline button.active{background:#e4ecdf;color:#285b47;font-weight:600}.paper-area{flex:1;min-width:0;padding:27px;overflow:auto;background:#e9ede5;display:flex;justify-content:center}iframe{background:white;border:0;box-shadow:0 5px 24px #273f2a12;width:100%;max-width:760px;min-height:100%;border-radius:2px}.footer{padding:12px 24px;border-top:1px solid var(--line);background:#fafbf7;font-size:12px;color:#59715e;white-space:pre-wrap;max-height:110px;overflow:auto}.footer.error{color:#a13d30;background:#fff3ed}.label-row{display:flex;align-items:center;justify-content:space-between;gap:8px}.label-row .btn{padding:5px 9px;font-size:11px}.badge{font-size:11px;color:#87927e}.empty-hint{color:#7d8879;font-size:12px;padding:8px;line-height:1.8}@media(max-width:1050px){.outline{width:170px}main{grid-template-columns:310px minmax(0,1fr)}.paper-area{padding:15px}.toolbar{padding:12px}}@media(max-width:760px){header{padding:14px;height:78px}.pill{display:none}main{display:block;height:auto}aside{max-height:none;border-right:0}.workspace{height:85vh}.outline{width:135px}.toolbar{flex-wrap:wrap}.paper-area{padding:8px}.row{gap:9px}}
 </style>
 </head>
 <body>
@@ -13,7 +13,11 @@
 <main>
 <aside>
 <section class="panel"><h2><span class="step">01</span> 导入原稿</h2>
-<label for="source">Markdown 原稿</label><input id="source" type="file" accept=".md,.markdown,.txt">
+<label for="source">原稿（Markdown / Word）</label><input id="source" type="file" accept=".md,.markdown,.txt,.docx,.doc">
+<small>Word 请使用 .docx，标题样式按 1–6 级转换，内嵌图片自动提取；旧版 .doc 请先另存为 .docx。以下转换选项在下次选择 Word 文件时生效。</small>
+<label><input id="bracketSubtitle" type="checkbox"> 将整段【文字】识别为一级小标题</label>
+<button id="saveMarkdown" class="btn" disabled>下载转换后的 Markdown 与图片</button>
+<details id="conversionNotes" hidden><summary>Word 转换提示（请核对）</summary><div id="wordNotes" class="hint"></div></details>
 <label for="folder">原稿文件夹（含图片，可选）</label><input id="folder" type="file" webkitdirectory multiple>
 <small>图片原稿建议选择整个文件夹，保留“图/img1.jpg”等相对路径。文件夹仅含一份原稿时会自动载入。</small>
 <label for="images">或补选图片文件</label><input id="images" type="file" accept="image/png,image/jpeg,image/gif" multiple>
@@ -98,11 +102,13 @@ function resolveAsset(target,assets,sourcePath){
 }
 function inline(text,ctx){
   // Match code first so Markdown image examples inside backticks remain literal.
-  const token=/(`+)([\s\S]*?)\1|!\[([^\]\n]*)\]\(\s*(?:<([^>\n]+)>|((?:[^()\n]|\([^()\n]*\))*?))\s*\)|\*\*(.+?)\*\*/g;
+  const token=/(`+)([\s\S]*?)\1|!\[([^\]\n]*)\]\(\s*(?:<([^>\n]+)>|((?:[^()\n]|\([^()\n]*\))*?))\s*\)|\*\*\*(.+?)\*\*\*|\*\*(.+?)\*\*|\*([^*\n]+?)\*/g;
   let result='',start=0,m;
   while((m=token.exec(text))){result+=escapeXml(text.slice(start,m.index));
     if(m[1])result+='<code>'+escapeXml(m[2])+'</code>';
-    else if(m[6])result+='<strong>'+inline(m[6],ctx)+'</strong>';
+    else if(m[6])result+='<strong><em>'+escapeXml(m[6])+'</em></strong>';
+    else if(m[7])result+='<strong>'+inline(m[7],ctx)+'</strong>';
+    else if(m[8])result+='<em>'+escapeXml(m[8])+'</em>';
     else{
       let target=(m[4]??m[5]).trim(),title='';const t=target.match(/^(.*?)\s+["'](.*)["']$/);if(m[4]==null&&t){target=t[1];title=t[2];}
       try{const asset=resolveAsset(target,ctx.assets,ctx.sourcePath);let record=ctx.used.get(asset);if(!record){const [mime,suffix]=mimeOf(asset.bytes);record={asset,mime,href:`images/body_${String(ctx.used.size+1).padStart(4,'0')}.${suffix}`};ctx.used.set(asset,record);}const src=ctx.preview?asset.url:record.href;result+=`<img src="${escapeXml(src)}" alt="${escapeXml(m[3])}"${title?' title="'+escapeXml(title)+'"':''}/>`;}
@@ -132,7 +138,7 @@ function cssFor(settings,base=DEFAULT_CSS,extra=''){
 // Minimal ZIP writer: stored entries, CRC-32, UTF-8 names. No CDN or third-party runtime.
 const crcTable=Array.from({length:256},(_,n)=>{for(let k=0;k<8;k++)n=n&1?0xedb88320^(n>>>1):n>>>1;return n>>>0;});
 function crc32(data){let crc=0xffffffff;for(const b of data)crc=crcTable[(crc^b)&255]^(crc>>>8);return (crc^0xffffffff)>>>0;}
-function zip(entries){
+function zip(entries,type='application/epub+zip'){
   const chunks=[],central=[];let offset=0;
   const header=(size)=>{const b=new Uint8Array(size);return [b,new DataView(b.buffer)];};
   for(const [name,value] of entries){const data=typeof value==='string'?enc.encode(value):value,filename=enc.encode(name),crc=crc32(data);if(data.length>0xffffffff)throw Error('单个文件过大，无法导出。');
@@ -141,7 +147,7 @@ function zip(entries){
   }
   if(offset>0xffffffff||entries.length>65535)throw Error('文稿超过 ZIP 格式大小限制。');
   const size=central.reduce((s,b)=>s+b.length,0),[end,e]=header(22);e.setUint32(0,0x06054b50,true);e.setUint16(8,entries.length,true);e.setUint16(10,entries.length,true);e.setUint32(12,size,true);e.setUint32(16,offset,true);
-  return new Blob([...chunks,...central,end],{type:'application/epub+zip'});
+  return new Blob([...chunks,...central,end],{type});
 }
 function makeEpub({nodes,assets,sourcePath,title,creator,css,cover}){
   if(!nodes.length)throw Error('没有识别到标题，请使用 # 至 #### 的 Markdown 标题。');
@@ -162,10 +168,120 @@ function makeEpub({nodes,assets,sourcePath,title,creator,css,cover}){
   files.push(['OEBPS/content.opf',`<?xml version="1.0" encoding="utf-8"?><package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="BookID" xml:lang="zh-CN"><metadata xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:identifier id="BookID">${id}</dc:identifier><dc:title>${escapeXml(title)}</dc:title><dc:language>zh-CN</dc:language>${creator?'<dc:creator>'+escapeXml(creator)+'</dc:creator>':''}<meta property="dcterms:modified">${new Date().toISOString().replace(/\.\d+Z$/,'Z')}</meta>${coverMeta}</metadata><manifest>${manifest}</manifest><spine toc="ncx">${spine}</spine></package>`],...chapters);
   return zip(files);
 }
-globalThis.EpubEngine={parseMarkdown,buildTree,context,renderBody,makeEpub,cssFor,resolveAsset,mimeOf,zip,normalizeHeading,DEFAULT_CSS};
+/* Word import: read OOXML locally, without external libraries or services. */
+async function unzipDocx(buffer){
+  const bytes=new Uint8Array(buffer),view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength),decoder=new TextDecoder();
+  let end=-1;for(let i=bytes.length-22;i>=Math.max(0,bytes.length-65557);i--)if(view.getUint32(i,true)===0x06054b50&&i+22+view.getUint16(i+20,true)===bytes.length){end=i;break;}
+  if(end<0)throw Error('文件不是有效的 .docx（ZIP）文档，或文件已损坏。');
+  if(view.getUint16(end+4,true)||view.getUint16(end+6,true))throw Error('不支持分卷 Word 文件。');
+  const count=view.getUint16(end+10,true),offset=view.getUint32(end+16,true),files=new Map();let cursor=offset,total=0;
+  for(let i=0;i<count;i++){
+    if(cursor+46>bytes.length||view.getUint32(cursor,true)!==0x02014b50)throw Error('Word 文件目录损坏。');
+    const flags=view.getUint16(cursor+8,true),method=view.getUint16(cursor+10,true),crc=view.getUint32(cursor+16,true),compressed=view.getUint32(cursor+20,true),size=view.getUint32(cursor+24,true),nameLength=view.getUint16(cursor+28,true),extra=view.getUint16(cursor+30,true),comment=view.getUint16(cursor+32,true),local=view.getUint32(cursor+42,true);
+    if(flags&1)throw Error('不支持加密 Word，请先在 Word 中移除密码再另存为 .docx。');
+    if(size>128*1024*1024||(total+=size)>256*1024*1024)throw Error('Word 解压内容超过 256MB，请压缩图片或拆分文档后导入。');
+    const name=decoder.decode(bytes.slice(cursor+46,cursor+46+nameLength));cursor+=46+nameLength+extra+comment;
+    if(local+30>bytes.length||view.getUint32(local,true)!==0x04034b50)throw Error('Word 文件数据损坏。');
+    const start=local+30+view.getUint16(local+26,true)+view.getUint16(local+28,true);if(start+compressed>bytes.length)throw Error('Word 文件内容不完整。');
+    let data=bytes.slice(start,start+compressed);
+    if(method===8){
+      let stream;try{stream=new DecompressionStream('deflate-raw');}catch{throw Error('当前浏览器不支持 Word 解压，请使用较新版本 Chrome 或 Edge。');}
+      const reader=new Blob([data]).stream().pipeThrough(stream).getReader(),chunks=[];let length=0;
+      while(true){const {value,done}=await reader.read();if(done)break;length+=value.length;if(length>size){await reader.cancel();throw Error('Word 解压长度异常。');}chunks.push(value);}
+      data=new Uint8Array(length);let at=0;for(const chunk of chunks){data.set(chunk,at);at+=chunk.length;}
+    }else if(method!==0)throw Error('不支持此 Word 文件的压缩方式。');
+    if(data.length!==size||crc32(data)!==crc)throw Error('Word 文件校验失败：'+name);
+    files.set(normalizePath(name),data);
+  }
+  return files;
+}
+function xmlDecode(s){return s.replace(/&(#x[\da-f]+|#\d+|amp|lt|gt|quot|apos);/gi,(_,e)=>e[0]==='#'?String.fromCodePoint(e[1].toLowerCase()==='x'?parseInt(e.slice(2),16):parseInt(e.slice(1),10)):({amp:'&',lt:'<',gt:'>',quot:'"',apos:"'"}[e]||_));}
+function readXml(bytes){
+  const text=new TextDecoder().decode(bytes);if(/<!DOCTYPE|<!ENTITY/i.test(text))throw Error('不支持包含 DTD 或实体声明的 Word XML。');
+  const root={name:'root',attrs:{},children:[]},stack=[root];
+  const tokens=text.match(/<!--[\s\S]*?-->|<!\[CDATA\[[\s\S]*?\]\]>|<\?[\s\S]*?\?>|<(?:[^>"']|"[^"]*"|'[^']*')*>|[^<]+/g)||[];
+  for(const token of tokens){if(token.startsWith('<?')||token.startsWith('<!--'))continue;if(token.startsWith('<![CDATA[')){stack.at(-1).children.push(token.slice(9,-3));continue;}
+    if(token.startsWith('</')){if(stack.length<2||stack.at(-1).fullName!==token.slice(2,-1).trim())throw Error('Word XML 标签不匹配。');stack.pop();}
+    else if(token.startsWith('<')){const m=token.match(/^<([^\s/>]+)/);if(!m)throw Error('Word XML 格式无效。');const attrs={};for(const a of token.matchAll(/([^\s=<>]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g))attrs[a[1]]=xmlDecode(a[2]??a[3]);const node={name:m[1].split(':').at(-1),fullName:m[1],attrs,children:[]};stack.at(-1).children.push(node);if(!token.endsWith('/>'))stack.push(node);}
+    else stack.at(-1).children.push(xmlDecode(token));
+  }if(stack.length!==1)throw Error('Word XML 文件不完整。');return root;
+}
+const xc=(node,name)=>node?.children?.filter(n=>typeof n!=='string'&&n.name===name)||[];
+const xd=(node,name)=>{const all=[];for(const n of node?.children||[])if(typeof n!=='string'){if(n.name===name)all.push(n);all.push(...xd(n,name));}return all;};
+const xa=(node,key)=>{if(!node)return undefined;const found=Object.entries(node.attrs).find(([k])=>k.split(':').at(-1)===key);return found?.[1];};
+const xt=node=>(node?.children||[]).map(n=>typeof n==='string'?n:xt(n)).join('');
+const xmlBool=node=>node?!/^(0|false|off)$/i.test(xa(node,'val')||'1'):undefined;
+function wordStyles(xml){const styles=new Map();if(xml)for(const s of xd(readXml(xml),'style')){styles.set(xa(s,'styleId'),s);if(xa(s,'type')==='paragraph'&&xa(s,'default')==='1')styles.defaultParagraph=xa(s,'styleId');}return styles;}
+function styleChain(styles,id){const chain=[],seen=new Set();while(id&&styles.has(id)&&!seen.has(id)){seen.add(id);const s=styles.get(id);chain.unshift(s);id=xa(xc(s,'basedOn')[0],'val');}return chain;}
+function wordHeading(p,styles){
+  const prop=xc(p,'pPr')[0],id=xa(xc(prop,'pStyle')[0],'val'),chain=styleChain(styles,id);
+  const direct=xa(xc(prop,'outlineLvl')[0],'val');if(direct!=null&&Number(direct)<6)return Number(direct)+1;
+  for(const s of [...chain].reverse()){const name=xa(xc(s,'name')[0],'val')||xa(s,'styleId')||'',match=name.match(/(?:heading|标题)\s*([1-6])/i);if(match)return Number(match[1]);if(/^(title|标题)$/i.test(name))return 1;const level=xa(xc(xc(s,'pPr')[0],'outlineLvl')[0],'val');if(level!=null&&Number(level)<6)return Number(level)+1;}
+  return 0;
+}
+function wordFormat(run,p,styles,key,defaults){
+  const prop=xc(run,'rPr')[0],direct=xmlBool(xc(prop,key)[0]);if(direct!==undefined)return direct;
+  let value=xmlBool(xc(defaults,key)[0])||false;
+  const pid=xa(xc(xc(p,'pPr')[0],'pStyle')[0],'val')||styles.defaultParagraph,rid=xa(xc(prop,'rStyle')[0],'val');
+  for(const id of [pid,rid])for(const s of styleChain(styles,id))if(xmlBool(xc(xc(s,'rPr')[0],key)[0]))value=!value;
+  return value;
+}
+function paragraphWordText(p){
+  let value='';function visit(n){if(n.name==='del'||n.name==='txbxContent')return;if(n.name==='t'){value+=xt(n);return;}if(n.name==='tab'){value+='\t';return;}if(n.name==='br'||n.name==='cr'){value+='\n';return;}for(const child of n.children||[])if(typeof child!=='string')visit(child);}visit(p);return p.name==='r'?value:value.trim();
+}
+function paragraphWordMarkdown(p,styles,defaults){
+  const groups=[];function visit(n){if(n.name==='del'||n.name==='txbxContent')return;if(n.name==='r'){const text=paragraphWordText(n);if(!text)return;const b=wordFormat(n,p,styles,'b',defaults),i=wordFormat(n,p,styles,'i',defaults),last=groups.at(-1);if(last&&last.b===b&&last.i===i)last.text+=text;else groups.push({text,b,i});return;}for(const child of n.children||[])if(typeof child!=='string')visit(child);}visit(p);
+  return groups.map(g=>{const mark=(g.b?'**':'')+(g.i?'*':'');return mark?g.text.replace(/^(\s*)(\S(?:.*\S)?)(\s*)$/gm,(_,a,b,c)=>a+mark+b+mark+c):g.text;}).join('').trim();
+}
+function wordCaption(p,styles){const text=paragraphWordText(p).replace(/[\u2060\ufeff]/g,'');if(!text)return null;const id=xa(xc(xc(p,'pPr')[0],'pStyle')[0],'val'),name=xa(xc(styles.get(id),'name')[0],'val')||'';if(/caption|题注/i.test(name)||/^图\s*\d+(?:\s*[-－—–.]\s*\d+)*(?:\s*[:：、.．)）]\s*|\s+|(?=[^\d\s])).+$/.test(text))return text;return text.match(/^(?:图片说明|图注说明|图片名|图片|图注|图说|照片说明|说明|图)\s*[:：]\s*(.+)$/)?.[1]||null;}
+async function rotateWordImage(bytes,blip){
+  const t=blip.transform,rot=Number(xa(t,'rot')||0)/60000,flipH=/^(1|true|on)$/i.test(xa(t,'flipH')||''),flipV=/^(1|true|on)$/i.test(xa(t,'flipV')||'');
+  // The browser decoder applies EXIF orientation. Re-encode transformed pictures.
+  const isJpeg=bytes[0]===255&&bytes[1]===216;
+  if(!rot&&!flipH&&!flipV&&!isJpeg)return bytes;
+  if(typeof createImageBitmap==='undefined'||typeof document==='undefined'){if(rot||flipH||flipV)throw Error('当前环境无法处理 Word 图片旋转。');return bytes;}
+  const bitmap=await createImageBitmap(new Blob([bytes])),angle=rot*Math.PI/180,canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.ceil(Math.abs(bitmap.width*Math.cos(angle))+Math.abs(bitmap.height*Math.sin(angle))));canvas.height=Math.max(1,Math.ceil(Math.abs(bitmap.width*Math.sin(angle))+Math.abs(bitmap.height*Math.cos(angle))));const ctx=canvas.getContext('2d');ctx.translate(canvas.width/2,canvas.height/2);ctx.rotate(angle);ctx.scale(flipH?-1:1,flipV?-1:1);ctx.drawImage(bitmap,-bitmap.width/2,-bitmap.height/2);bitmap.close();const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw Error('无法转换 Word 图片。');return new Uint8Array(await blob.arrayBuffer());
+}
+async function convertDocx(buffer,{filename='Word原稿.docx',bracketSubtitle=false}={}){
+  const files=await unzipDocx(buffer),warnings=[];
+  let main='word/document.xml';if(files.has('_rels/.rels')){const rel=xd(readXml(files.get('_rels/.rels')),'Relationship').find(r=>(xa(r,'Type')||'').endsWith('/officeDocument'));if(rel)main=normalizePath(xa(rel,'Target')||main);}
+  if(!files.has(main))throw Error('未找到 Word 正文。请确认选择的是 .docx 文件。');
+  const base=main.slice(0,main.lastIndexOf('/')+1),relsName=base+'_rels/'+main.split('/').at(-1)+'.rels',rels=new Map();
+  if(files.has(relsName))for(const r of xd(readXml(files.get(relsName)),'Relationship'))rels.set(xa(r,'Id'),{target:normalizePath(base+(xa(r,'Target')||'')),external:xa(r,'TargetMode')==='External',type:xa(r,'Type')||''});
+  const stylesPath=[...rels.values()].find(r=>r.type.endsWith('/styles'))?.target||base+'styles.xml',stylesXml=files.get(stylesPath),styles=wordStyles(stylesXml),styleRoot=stylesXml?readXml(stylesXml):null,defaults=xd(xd(styleRoot,'rPrDefault')[0],'rPr')[0];
+  const root=readXml(files.get(main)),body=xd(root,'body')[0];if(!body)throw Error('Word 正文结构无效。');
+  const blocks=[];function collect(n){for(const child of n.children||[])if(typeof child!=='string'){if(child.name==='p')blocks.push(child);else if(child.name!=='sectPr')collect(child);}}collect(body);
+  if(xd(body,'tbl').length)warnings.push('表格已按段落展开，请核对顺序和排版。');
+  if(xd(body,'footnoteReference').length||xd(body,'endnoteReference').length)warnings.push('脚注、尾注暂未导入，请在原稿中改为正文后重试。');
+  if(xd(body,'txbxContent').length)warnings.push('文本框内容暂未导入，请改为普通正文段落。');
+  const lines=[],assets=new Map();let imageNo=0;
+  for(let index=0;index<blocks.length;index++){
+    const p=blocks[index],text=paragraphWordText(p),level=wordHeading(p,styles),blips=[];
+    function pictures(n,transform){if(n.name==='del'||n.name==='txbxContent')return;if(n.name==='pic')transform=xd(n,'xfrm')[0];if(n.name==='blip'){blips.push({...n,transform});return;}for(const child of n.children||[])if(typeof child!=='string')pictures(child,transform);}pictures(p);
+    if(blips.length){let caption=wordCaption(p,styles),skip=index;
+      if(!caption)for(let j=index+1;j<blocks.length;j++){if(!body.children.includes(p)||!body.children.includes(blocks[j])||wordHeading(blocks[j],styles)||xd(blocks[j],'blip').length)break;const t=paragraphWordText(blocks[j]);if(t){caption=wordCaption(blocks[j],styles);if(caption)skip=j;break;}}
+      if(text&&!wordCaption(p,styles))lines.push(paragraphWordMarkdown(p,styles,defaults));
+      for(const blip of blips){const rel=rels.get(xa(blip,'embed'));if(!rel||rel.external||!files.has(rel.target))throw Error('Word 中有无法读取或外部链接的图片，请先在 Word 中嵌入图片。');let bytes=files.get(rel.target);mimeOf(bytes);bytes=await rotateWordImage(bytes,blip);const [mime,suffix]=mimeOf(bytes),key=`图/img${++imageNo}.${suffix}`;assets.set(key,{bytes,mime});const alt=(caption||'').replace(/\[/g,'（').replace(/\]/g,'）');lines.push(`![${alt}](${key})`);}
+      index=skip;continue;
+    }
+    if(!text)continue;let title=text.replace(/^标题[0-9\s]*[:：]\s*/,'').trim();
+    if(bracketSubtitle&&/^【\s*(.+?)\s*】$/.test(title))title=title.replace(/^【\s*|\s*】$/g,'');
+    if(level){let mapped=level;if(level===4&&/^(自序|前言|前沿|序言|代序|写在前面)(?:$|[\s:：、—–-])/.test(title))mapped=1;lines.push('#'.repeat(mapped)+' '+title.replace(/^前沿(?=$|[\s:：、—–-])/,'前言'));continue;}
+    if(bracketSubtitle&&/^【\s*(.+?)\s*】$/.test(text)){lines.push('##### '+title);continue;}
+    const runs=xd(p,'r').filter(r=>paragraphWordText(r)),allBold=runs.length&&runs.every(r=>wordFormat(r,p,styles,'b',defaults));
+    const previous=blocks[index-1],next=blocks[index+1];
+    if(!/^作者/.test(text)&&allBold&&text.length<=30&&(!previous||!paragraphWordText(previous))&&(!next||!paragraphWordText(next))){lines.push('#### '+title);warnings.push('推测文章标题，请核对：'+title);}
+    else if(/^\d{1,2}\.\s/.test(text)&&text.length<=30&&(!previous||!paragraphWordText(previous))){lines.push('##### '+text);warnings.push('推测小标题，请核对：'+text);}
+    else lines.push(paragraphWordMarkdown(p,styles,defaults));
+  }
+  if(!lines.some(line=>/^#{1,4}\s/.test(line))){lines.unshift('# '+filename.replace(/\.docx$/i,''));warnings.push('原稿未识别到标题，暂以文件名作为标题；建议使用 Word 标题样式明确卷、章和文章层级。');}
+  else if(lines.length&&!/^#{1,4}\s/.test(lines[0])){lines.unshift('# '+filename.replace(/\.docx$/i,''));warnings.push('首个标题前的正文已保存在文件名标题页面，请核对。');}
+  return {markdown:lines.join('\n\n')+'\n',assets,warnings};
+}
+globalThis.EpubEngine={parseMarkdown,buildTree,context,renderBody,makeEpub,cssFor,resolveAsset,mimeOf,zip,normalizeHeading,DEFAULT_CSS,convertDocx,unzipDocx};
 // UI initialization (not needed by the offline export tests).
 if(typeof document!=='undefined'){
-  const $=id=>document.getElementById(id),state={nodes:parseMarkdown(DEMO),assets:new Map(),sourcePath:'',cover:null,selected:0,loaded:false,urls:[],busy:0};
+  const $=id=>document.getElementById(id),state={nodes:parseMarkdown(DEMO),assets:new Map(),sourcePath:'',cover:null,selected:0,loaded:false,urls:[],busy:0,wordData:null};
   const defaults={font:'serif',fontSize:18,lineHeight:1.8,indent:2,paragraphGap:.8,margin:1.5,titleSize:1.4,subheadingSize:1,minorHeadingSize:0.9,titleColor:'#4b0082',textColor:'#333333',titleAlign:'center'};
   const limits={fontSize:[10,40],lineHeight:[1,3],indent:[0,4],paragraphGap:[0,3],margin:[0,5],titleSize:[0.5,3],subheadingSize:[0.5,3],minorHeadingSize:[0.5,3]};
   function settings(){const s={};for(const key of Object.keys(defaults)){s[key]=$(key).value;if(limits[key]){const [lo,hi]=limits[key],n=Number(s[key]);s[key]=Number.isFinite(n)?Math.min(hi,Math.max(lo,n)):defaults[key];}}return s;}
@@ -188,21 +304,31 @@ if(typeof document!=='undefined'){
     const visit=(tree,depth)=>{for(const n of tree){const b=document.createElement('button');b.textContent=n.title;b.style.paddingLeft=8+depth*12+'px';b.dataset.index=n.index-1;b.onclick=()=>{state.selected=n.index-1;status('正在预览：'+n.title);showPreview();};$('outline').append(b);visit(n.children,depth+1);}};visit(buildTree(state.nodes),0);
     const articles=state.nodes.filter(n=>n.level===4).length;$('stats').textContent=(state.loaded?'':'示例 · ')+`${state.nodes.length} 个标题 / ${articles} 篇文章`;
   }
-  async function loadSource(file,path){const nodes=parseMarkdown(await file.text());if(!nodes.length)throw Error('未识别到标题，请使用 # 至 #### 的 Markdown 标题。');state.nodes=nodes;state.sourcePath=path||file.name;state.loaded=true;state.selected=0;$('bookTitle').value=file.name.replace(/\.(md|markdown|txt)$/i,'');outline();status('原稿已载入。请检查目录及图片，再导出电子书。');showPreview();}
+  async function loadSource(file,path){
+    if(/\.doc$/i.test(file.name))throw Error('旧版 .doc 暂不支持，请用 Word 另存为 .docx 后导入。');
+    let text,converted=null;if(/\.docx$/i.test(file.name)){status('正在本地转换 Word 并提取图片……');converted=await convertDocx(await file.arrayBuffer(),{filename:file.name,bracketSubtitle:$('bracketSubtitle').checked});text=converted.markdown;}else text=await file.text();
+    const nodes=parseMarkdown(text);if(!nodes.length)throw Error('未识别到标题，请使用 # 至 #### 的 Markdown 标题。');
+    if(converted){clearAssets();for(const [key,asset] of converted.assets){asset.url=URL.createObjectURL(new Blob([asset.bytes],{type:asset.mime}));state.urls.push(asset.url);state.assets.set(key,asset);}}
+    else if(state.wordData&&!path)clearAssets();
+    state.wordData=converted;state.nodes=nodes;state.sourcePath=converted?file.name.replace(/\.docx$/i,'.md'):(path||file.name);state.loaded=true;state.selected=0;
+    $('saveMarkdown').disabled=!converted;$('conversionNotes').hidden=!converted?.warnings.length;$('wordNotes').textContent=converted?.warnings.join('\n')||'';$('wordNotes').style.whiteSpace='pre-wrap';
+    $('bookTitle').value=file.name.replace(/\.(md|markdown|txt|docx)$/i,'');outline();status(converted?`Word 已转换，提取 ${converted.assets.size} 张图片。${converted.warnings.length?'请展开“Word 转换提示”核对。':'请检查目录和预览。'}`:'原稿已载入。请检查目录及图片，再导出电子书。');showPreview();
+  }
   async function addAssets(files){for(const file of files){if(!/\.(png|jpe?g|gif)$/i.test(file.name))continue;const bytes=new Uint8Array(await file.arrayBuffer()),[mime]=mimeOf(bytes),url=URL.createObjectURL(new Blob([bytes],{type:mime}));state.urls.push(url);const key=normalizePath(file.webkitRelativePath||file.name);const previous=state.assets.get(key);if(previous)URL.revokeObjectURL(previous.url);state.assets.set(key,{bytes,url});}}
   function clearAssets(){for(const url of state.urls)URL.revokeObjectURL(url);state.urls=[];state.assets.clear();}
-  async function guard(action){state.busy++;$('export').disabled=true;try{await action();}catch(e){status(e.message,true);}finally{state.busy--;$('export').disabled=state.busy>0;}}
+  async function guard(action){state.busy++;$('export').disabled=true;$('saveMarkdown').disabled=true;try{await action();}catch(e){status(e.message,true);}finally{state.busy--;$('export').disabled=state.busy>0;$('saveMarkdown').disabled=state.busy>0||!state.wordData;}}
   $('source').onchange=e=>guard(async()=>{if(!e.target.files[0])return;await loadSource(e.target.files[0]);});
-  $('folder').onchange=e=>guard(async()=>{const files=[...e.target.files];if(!files.length)return;clearAssets();await addAssets(files);const candidates=files.filter(f=>/\.(md|markdown)$/i.test(f.name)&&!/(样式|style)/i.test(f.name));if(candidates.length===1)await loadSource(candidates[0],candidates[0].webkitRelativePath);else{status(candidates.length>1?'图片已载入，请在“Markdown 原稿”中选择要制作的原稿。':'图片已载入，请选择 Markdown 原稿。');showPreview();}});
+  $('folder').onchange=e=>guard(async()=>{const files=[...e.target.files];if(!files.length)return;clearAssets();await addAssets(files);const candidates=files.filter(f=>/\.(md|markdown|docx)$/i.test(f.name)&&!/(样式|style)/i.test(f.name));if(candidates.length===1)await loadSource(candidates[0],candidates[0].webkitRelativePath);else{status(candidates.length>1?'图片已载入，请在“原稿”中选择要制作的文件。':'图片已载入，请选择原稿。');showPreview();}});
   $('images').onchange=e=>guard(async()=>{await addAssets(e.target.files);status('图片已补充，预览已更新。');showPreview();});
   $('cover').onchange=e=>guard(async()=>{const file=e.target.files[0];state.cover=null;if(file){const bytes=new Uint8Array(await file.arrayBuffer()),[mime]=mimeOf(bytes);if(mime==='image/gif')throw Error('封面请使用 JPG 或 PNG。');state.cover={bytes};status('封面已载入：'+file.name);}});
   $('styleFile').onchange=e=>guard(async()=>{const file=e.target.files[0];if(!file)return;const text=await file.text(),match=text.match(/```(?:plain|css)?\s*\n([\s\S]*?)```/);$('baseCss').value=match?match[1]:text;storeSettings();status('基础样式已导入，可继续调整排版设置。');showPreview();});
   for(const key of [...Object.keys(defaults),'baseCss','extraCss'])$(key).addEventListener('input',()=>{storeSettings();showPreview();});
   $('resetStyle').onclick=()=>{for(const [key,value] of Object.entries(defaults))$(key).value=value;$('baseCss').value=DEFAULT_CSS;$('extraCss').value='';storeSettings();status('已恢复默认样式。');showPreview();};
   $('saveCss').onclick=()=>download(new Blob([css()],{type:'text/css;charset=utf-8'}),'EPUB样式表.css');
+  $('saveMarkdown').onclick=()=>guard(async()=>{if(!state.wordData)throw Error('请先导入 Word 原稿。');const name=state.sourcePath.replace(/\.md$/i,'').replace(/[\\/:*?"<>|]/g,'_'),entries=[[name+'.md',state.wordData.markdown]];for(const [key,asset] of state.wordData.assets)entries.push([key,asset.bytes]);if(state.wordData.warnings.length)entries.push(['转换核对清单.txt',state.wordData.warnings.join('\n')]);download(zip(entries,'application/zip'),name+'-Markdown.zip');status('Markdown 与图片已打包下载，解压到同一目录即可继续使用。');});
   $('device').onchange=()=>{$('preview').style.maxWidth=$('device').value+'px';};
   $('showToc').onclick=()=>{state.selected=-1;status('正在预览完整目录。左侧点击标题可查看正文。');showPreview();};
-  $('export').onclick=()=>guard(async()=>{if(!state.loaded)throw Error('请先选择自己的 Markdown 原稿。');status('正在检查图片并打包 EPUB……');await new Promise(r=>setTimeout(r,30));const blob=makeEpub({nodes:state.nodes,assets:state.assets,sourcePath:state.sourcePath,title:$('bookTitle').value.trim(),creator:$('creator').value.trim(),css:css(),cover:state.cover});const filename=$('bookTitle').value.trim().replace(/[\\/:*?"<>|]/g,'_')+'.epub';download(blob,filename);status('EPUB 已生成并提交浏览器下载：'+filename);});
+  $('export').onclick=()=>guard(async()=>{if(!state.loaded)throw Error('请先选择自己的 Markdown 或 Word 原稿。');status('正在检查图片并打包 EPUB……');await new Promise(r=>setTimeout(r,30));const blob=makeEpub({nodes:state.nodes,assets:state.assets,sourcePath:state.sourcePath,title:$('bookTitle').value.trim(),creator:$('creator').value.trim(),css:css(),cover:state.cover});const filename=$('bookTitle').value.trim().replace(/[\\/:*?"<>|]/g,'_')+'.epub';download(blob,filename);status('EPUB 已生成并提交浏览器下载：'+filename);});
   for(const [key,value] of Object.entries(defaults))$(key).value=value;$('baseCss').value=DEFAULT_CSS;
   try{const saved=JSON.parse(localStorage.getItem('epub-maker-style-v1')||'null');if(saved){for(const key of Object.keys(defaults))if(saved.settings?.[key]!=null)$(key).value=saved.settings[key];if(typeof saved.base==='string')$('baseCss').value=saved.base;if(typeof saved.extra==='string')$('extraCss').value=saved.extra;}}catch{}
   window.addEventListener('beforeunload',()=>{for(const url of state.urls)URL.revokeObjectURL(url);});

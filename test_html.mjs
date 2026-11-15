@@ -6,7 +6,7 @@ import { webcrypto } from 'node:crypto';
 
 const html=await fs.readFile(new URL('./电子书制作工具.html',import.meta.url),'utf8');
 const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
-const sandbox={TextEncoder,Blob,crypto:webcrypto,console};
+const sandbox={TextEncoder,TextDecoder,DecompressionStream,Blob,crypto:webcrypto,console};
 vm.createContext(sandbox);
 vm.runInContext(script,sandbox,{filename:'电子书制作工具.html'});
 const E=sandbox.EpubEngine;
@@ -49,7 +49,7 @@ const elements=new Map();
 for(const [,id] of html.matchAll(/\bid="([^"]+)"/g))elements.set(id,new Element());
 const document={getElementById:id=>elements.get(id),createElement:()=>new Element()};
 let downloadedBlob;
-const uiSandbox={TextEncoder,Blob,crypto:webcrypto,console,document,window:{addEventListener(){}},localStorage:{getItem:()=>null,setItem(){}},URL:{createObjectURL:blob=>{downloadedBlob=blob;return 'blob:mock';},revokeObjectURL(){}},setTimeout:fn=>{fn();}};
+const uiSandbox={TextEncoder,TextDecoder,DecompressionStream,Blob,crypto:webcrypto,console,document,window:{addEventListener(){}},localStorage:{getItem:()=>null,setItem(){}},URL:{createObjectURL:blob=>{downloadedBlob=blob;return 'blob:mock';},revokeObjectURL(){}},setTimeout:fn=>{fn();}};
 vm.createContext(uiSandbox);vm.runInContext(script,uiSandbox);
 assert.ok(elements.get('preview').srcdoc.includes('把生活写成一本书'));
 elements.get('fontSize').value='24';elements.get('fontSize').listeners.input();
@@ -75,5 +75,24 @@ elements.get('device').value='420';elements.get('device').onchange();assert.equa
 await elements.get('cover').onchange({target:{files:[{name:'cover.png',arrayBuffer:async()=>png.buffer}]}});
 await elements.get('export').onclick();assert.ok(elements.get('status').textContent.includes('sample.epub'));
 await fs.writeFile(path.join(output,'html-headings.epub'),Buffer.from(await downloadedBlob.arrayBuffer()));
+if(process.argv[3]){
+  const buffer=await fs.readFile(process.argv[3]),word=await E.convertDocx(buffer,{filename:'word-fixture.docx',bracketSubtitle:true});
+  assert.ok(word.markdown.includes('Before **bold** and *italic* and ***both***'));
+  assert.ok(word.markdown.includes('**inherited** hyperlink'));
+  assert.ok(word.markdown.includes('##### Bracket heading'));
+  assert.equal(word.assets.size,2);assert.equal((word.markdown.match(/!\[图1：图片说明\]/g)||[]).length,2);
+  assert.ok(word.warnings.some(w=>w.includes('表格')));assert.ok(word.markdown.includes('Table text'));
+  elements.get('bracketSubtitle').checked=true;
+  await elements.get('source').onchange({target:{files:[{name:'word-fixture.docx',arrayBuffer:async()=>buffer}]}});
+  assert.equal(elements.get('bookTitle').value,'word-fixture');assert.equal(elements.get('saveMarkdown').disabled,false);
+  assert.ok(elements.get('preview').srcdoc.includes('新的开始'));assert.equal(elements.get('conversionNotes').hidden,false);
+  await elements.get('saveMarkdown').onclick();await fs.writeFile(path.join(output,'word-markdown.zip'),Buffer.from(await downloadedBlob.arrayBuffer()));
+  elements.get('outline').children.find(e=>e.textContent==='Article').click();
+  assert.ok(elements.get('preview').srcdoc.includes('<em>italic</em>'));assert.ok(elements.get('preview').srcdoc.includes('<strong><em>both</em></strong>'));assert.ok(elements.get('preview').srcdoc.includes('<img src="blob:mock"'));
+  await elements.get('export').onclick();await fs.writeFile(path.join(output,'html-word.epub'),Buffer.from(await downloadedBlob.arrayBuffer()));
+  await elements.get('source').onchange({target:{files:[{name:'legacy.doc'}]}});assert.ok(elements.get('status').textContent.includes('另存为 .docx'));
+  await assert.rejects(()=>E.convertDocx(new Uint8Array([1,2,3])),/有效的/);
+  console.log('PASS: compressed DOCX import, formatting, image extraction, captions, bracket option, table warning, Markdown ZIP and EPUB export');
+}
 console.log('PASS: UI state tests for initialization, source import, live style changes, chapter selection, mobile width, reset and export');
 console.log('PASS: HTML engine, preface, authors, image paths, preview, EPUB export, optional levels, missing-image errors');
